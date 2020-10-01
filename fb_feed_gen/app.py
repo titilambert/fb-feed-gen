@@ -10,20 +10,24 @@ import urllib.error
 
 # initialization
 app = Flask(__name__)
-app.template_folder=os.path.join(app.root_path, '..', 'templates')
+path = os.path.dirname(os.path.abspath(__file__))
+app.template_folder=os.path.join(path, '..', 'templates')
 app.config.update(
     DEBUG=True,
 )
 
 # controllers
-@app.route('/favicon.ico')
+@app.route('/static/ico/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, '..', 'static'), 'ico/favicon.ico')
+    return send_from_directory(os.path.join(path, '..', 'static'), 'ico/favicon.ico')
 
+@app.route('/static/css/style.css')
+def css():
+    return send_from_directory(os.path.join(path, '..', 'static'), 'css/style.css')
 
 @app.route("/")
 def main():
-    print(os.path.join(app.root_path, '..', 'templates'))
+    print(os.path.join(app.root_path, 'templates'))
     return render_template('index.html')
 
 
