@@ -27,7 +27,7 @@ def css():
 
 @app.route("/")
 def main():
-    print(os.path.join(app.root_path, 'templates'))
+    #print(os.path.join(app.root_path, 'templates'))
     return render_template('index.html')
 
 
